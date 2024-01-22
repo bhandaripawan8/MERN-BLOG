@@ -1,56 +1,89 @@
-
-body{
-  color: #333;
+*{
+  box-sizing: border-box;
 }
 
-
-main{
+body{
   padding: 10px;
   max-width: 900px;
   margin: 0 auto;
 }
 
-header{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 50px;
-  align-items: center;
-}
+.header-container{
+    padding: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  header{
+      display: flex;  
+      align-items: center;
+      justify-content: space-between;
+      width: auto;
+      margin-top: 20px;
+      margin-bottom: 50px;
+      align-items: center;
+    }
+    
+    header a{
+      font-size: 22px;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    
+    header a.logo{
+      font-weight: bold;
+    }
+    
+    header nav{
+      display: flex;
+      gap: 15px;
+    }
 
-header a{
-  font-size: 22px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.texts p.info{
-  margin: 10,0;
-}
-header a.logo{
-  font-weight: bold;
-}
-
-header nav{
-  display: flex;
-  gap: 15px;
-}
-
-/* post */
-div.post{
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.post img{
-  height: 100%;
-  width: 100%;
-  object-fit: scale-down;
-}
-
-div.post div.texts h2{
-  margin: 0;
-  font-size: 1.5rem;
-}
+    
+body{
+    color: #333;
+  }
+  
+  
+  main{
+    padding: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  
+  
+  /* post */
+  div.post{
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .info{
+    margin: 5px 0px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .info p{
+    margin: 0;
+    margin-left: 10px;
+  }
+  
+  .post img{
+    height: 100%;
+    width: 100%;
+    object-fit: scale-down;
+  }
+  
+  div.post div.texts h2{
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .summary{
+    margin-top: 5px;
+  }
