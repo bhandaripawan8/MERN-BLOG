@@ -23,11 +23,8 @@ export default function Register() {
       } else{
           alert('registration successful');
       }
-   
-
-
   }
-
+   
   return (
     <>
     <Header/>
