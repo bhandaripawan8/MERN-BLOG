@@ -8,20 +8,22 @@ export default function Login() {
   const [password, setpassword] = useState('');
   const [redirect, setredirect] = useState(false);
 
-  function handlelogin(e){
-    e.prevenetDefault();
-    const response = fetch('http:localhost/4000/login', {
+  async function handlelogin(e) {
+    e.preventDefault();
+    const response = await fetch('http://localhost:4000/login', {
       method: 'POST',
-      body: json.stringfy({username, password}),
-      headers: {'content-type': 'application/json'},
-      credentials: 'include', 
+      body: JSON.stringify({ username, password }),
+      headers: { 'content-type': 'application/json' },
+      credentials: 'include',
     });
-    if(response.ok) {
+  
+    if (response.ok) {
       setredirect(true);
-    } else{
+    } else {
       alert('Login failed');
     }
   }
+  
 
   if(redirect) {
     return  <Navigate to={'/'}/>

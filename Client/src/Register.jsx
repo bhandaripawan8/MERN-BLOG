@@ -18,10 +18,10 @@ export default function Register() {
         // because this is json we need to send header
         headers: {'content-type':'application/json'}
       })
-      if(response.status !== 200) {
-        alert('registration failed, try again')
+      if(response.ok) {
+        alert('registration successful')
       } else{
-          alert('registration successful');
+          alert('registration failed');
       }
   }
    

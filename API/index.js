@@ -36,20 +36,28 @@ app.post('/register', async (req, res) =>{
     }
 })
 
-app.post('/login', async (req, res) =>{
-    const {username, password} = req.body;
-    const userDoc = await User.findone({username: username});
-    const passOk = bcrypt.compareSync(password, userDoc.password);
-    res.json(passOk);
-    if(passOk) {
-        jwt.sign({username, id:userDoc._id}, secret, {}, (err, token)=>{
-            if(err) throw err;
-            res.cookie('token', token).json('ok');
-        })
-    } else{
-        res.status(400).json('wrong credentials');
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        const userDoc = await User.findOne({ username: username });
+        if (!userDoc) {
+            return res.status(400).json('User not found');
+        }
+
+        const passOk = bcrypt.compareSync(password, userDoc.password);
+        if (passOk) {
+            jwt.sign({ username, id: userDoc._id }, secret, {}, (err, token) => {
+                if (err) throw err;
+                res.cookie('token', token).json('ok');
+            });
+        } else {
+            res.status(400).json('Wrong credentials');
+        }
+    } catch (e) {
+        res.status(500).json('Internal Server Error');
     }
-})
+});
+
 
 app.listen(PORT, () =>{
     console.log(`server is running on port ${PORT}`)
