@@ -3,16 +3,11 @@ import express from 'express';
 const app = express();
 const PORT = 4000;
 import cors from 'cors';
-import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 dotenv.config();
 import {connectDB} from './config/db.js'
 
-const salt = bcrypt.genSaltSync(10);
-const secret = 'heladfasdflahrf';
 
 app.use(cors({credentials: true, origin: 'http://localhost:5173'}));
 app.use(cookieParser());
