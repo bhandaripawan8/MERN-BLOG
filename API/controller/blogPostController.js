@@ -107,15 +107,12 @@ const updateBlogPost = async (req, res) => {
         if (err) {
             return res.status(400).json({ success: false, message: err.message });
         }
-
         const { title, content } = req.body;
-
         try {
             const blog = await blogPostModel.findById(id);
             if (!blog) {
                 return res.status(404).json({ success: false, message: 'Blog post not found' });
             }
-
             // Update fields
             blog.title = title || blog.title;
             blog.content = content || blog.content;
@@ -126,7 +123,6 @@ const updateBlogPost = async (req, res) => {
                 }
                 blog.image = req.file.path; // Set new image path
             }
-
             const updatedBlog = await blog.save();
             return res.status(200).json({
                 success: true,
