@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
         const uploadDir = '../uploads';
         if(!fs.existsSync(uploadDir)){
-            fs.mkdir(uploadDir); //create upload directory if it doesn't exist
+            fs.mkdir(uploadDir); 
         }
         cb(null, uploadDir);
     },
@@ -31,9 +31,9 @@ const fileFilter = (req, file, cb) => {
 // Initialize Multer
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 1024 * 1024 * 5 }, // Limit file size to 5MB
+    limits: { fileSize: 1024 * 1024 * 5 }, 
     fileFilter: fileFilter
-}).single('image'); // Handle single image upload
+}).single('image'); 
 
 // Create Blog Post Controller
 const createBlogPost = async (req, res) => {
@@ -52,7 +52,7 @@ const createBlogPost = async (req, res) => {
                 title,
                 content,
                 author,
-                image: req.file ? req.file.path : null // Store image path if uploaded
+                image: req.file ? req.file.path : null 
             });
             // Save the blog post to the database
             const savedBlog = await newBlog.save();
@@ -102,7 +102,6 @@ const getOneBlogPostById = async (req, res) =>{
 
 const updateBlogPost = async (req, res) => {
     const { id } = req.params;
-
     upload(req, res, async (err) => {
         if (err) {
             return res.status(400).json({ success: false, message: err.message });
@@ -113,15 +112,17 @@ const updateBlogPost = async (req, res) => {
             if (!blog) {
                 return res.status(404).json({ success: false, message: 'Blog post not found' });
             }
-            // Update fields
-            blog.title = title || blog.title;
-            blog.content = content || blog.content;
+            if (title) blog.title = title;
+            if (content) blog.content = content;
             if (req.file) {
-                // Remove the old image from the file system
                 if (blog.image) {
-                    fs.unlinkSync(blog.image);
+                    try {
+                        fs.unlinkSync(blog.image); 
+                    } catch (error) {
+                        console.error('Error removing old image:', error.message);
+                    }
                 }
-                blog.image = req.file.path; // Set new image path
+                blog.image = req.file.path;
             }
             const updatedBlog = await blog.save();
             return res.status(200).json({
@@ -130,7 +131,7 @@ const updateBlogPost = async (req, res) => {
                 blog: updatedBlog,
             });
         } catch (error) {
-            console.error('Error updating blog post:', error);
+            console.error('Error updating blog post:', error.message);
             return res.status(500).json({ success: false, message: 'Server error. Please try again later.' });
         }
     });
