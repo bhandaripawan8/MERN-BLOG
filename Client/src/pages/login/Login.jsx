@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Header from './Header'
+import Header from '../../components/header/Header';
 import { Navigate } from 'react-router-dom';
 
 export default function Login() {

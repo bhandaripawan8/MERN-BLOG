@@ -25,7 +25,7 @@ export default function Header() {
   return (
     <div className='header-container'>
         <header>
-          <Link to={'/'} className='logo'>MyBlog</Link>
+          <Link to={'/'} className='logo'>The Blog Site</Link>
           <nav>
           {username ? (
             <>

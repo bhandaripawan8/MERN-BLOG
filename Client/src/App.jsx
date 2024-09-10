@@ -1,10 +1,10 @@
-import React from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Post from './Post.jsx';
-import Header from './Header.jsx';
-import './App.css';
-import Login from './Login.jsx';
-import Register from './Register.jsx';
+import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Post from "./Post.jsx";
+import Header from "../../Client/src/components/header/Header.jsx";
+import "./App.css";
+import Login from "./pages/login/Login.jsx";
+import Register from "./pages/register/Register.jsx";
 
 function App() {
   return (
