@@ -5,6 +5,7 @@ export const storeContext = createContext(null);
 const StoreContextProvider = (props) => {
     const url = 'http://localhost:4000/api'
     const [allBlogs, setAllBlogs] = useState([]);
+    const [token, setToken] = useState('');
 
 
 
@@ -20,7 +21,14 @@ const StoreContextProvider = (props) => {
     }
 
     useEffect(()=>{
-    getAllBlogs();   
+        const loadAllBlogData = async () =>{
+            await getAllBlogs();
+        }
+        const storedToken = localStorage.getItem('token');
+        if(storedToken){
+            setToken(storedToken);
+            await 
+        }
     },[])
 
 
