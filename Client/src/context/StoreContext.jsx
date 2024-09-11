@@ -23,19 +23,22 @@ const StoreContextProvider = (props) => {
     useEffect(()=>{
         const loadAllBlogData = async () =>{
             await getAllBlogs();
-        }
-        const storedToken = localStorage.getItem('token');
-        if(storedToken){
-            setToken(storedToken);
-            await 
-        }
+            const storedToken = localStorage.getItem('token');
+            if(storedToken){
+                setToken(storedToken);
+            }
+            }
+            loadAllBlogData();
     },[])
 
 
 
 
     const contextValue = {
-        getAllBlogs
+        getAllBlogs,
+        token, 
+        setToken,
+        url
     }
 
   return (
